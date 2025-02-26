@@ -66,6 +66,37 @@ class MainTest {
             Assertions.assertTrue(actual.isEmpty());
         }
 
+        @Test
+        @DisplayName("One value test")
+        void oneValueTest(){
+            List<Person> list = List.of(
+                    new Person("Jack",12),
+                    new Person("John",22),
+                    new Person("Jack",12),
+                    new Person("Jack",12)
+            );
+
+            PersonEntry expectedEntry = new PersonEntry(new Person("John",22),1);
+
+            Set<PersonEntry> actual =Main.countPerson(list);
+            Assertions.assertTrue(actual.contains(expectedEntry));
+        }
+        @Test
+        @DisplayName("Specific value test")
+        void specificValueTest(){
+            List<Person> list = List.of(
+                    new Person("Jack",12),
+                    new Person("John",22),
+                    new Person("Jack",12),
+                    new Person("Jack",12)
+            );
+            Set<PersonEntry> result = Main.countPerson(list);
+
+            PersonEntry expectedEntry = new PersonEntry(new Person("Jack",12),3);
+            Assertions.assertTrue(result.contains(expectedEntry));
+
+
     }
 
+}
 }
